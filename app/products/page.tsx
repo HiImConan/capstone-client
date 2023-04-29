@@ -1,7 +1,17 @@
-import React from "react";
+import Link from "next/link";
 
 const ProductsPage = () => {
-  return <div>Products list</div>;
+  const productList: string[] = ["shirt", "pants", "skirt", "shoes"];
+  return (
+    <>
+      <div>Products list</div>
+      {productList.map((product, idx) => (
+        <li key={idx}>
+          <Link href={`products/${product}`}>{product}</Link>
+        </li>
+      ))}
+    </>
+  );
 };
 
 export default ProductsPage;

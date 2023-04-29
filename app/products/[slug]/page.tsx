@@ -1,10 +1,20 @@
+import { notFound } from "next/navigation";
 type Props = {
   params: {
     slug: string;
   };
 };
 
+export function generateMetadata({ params }: Props) {
+  return {
+    title: `제품의 이름: ${params.slug}`,
+  };
+}
+
 const PantsPage = ({ params }: Props) => {
+  if (params.slug === "nothing") {
+    notFound();
+  }
   return <div>{params.slug}</div>;
 };
 
