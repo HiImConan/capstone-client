@@ -3,17 +3,13 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "멋진 제품 사이트 | 전체 제품 확인",
-  description: "멋진 제품을 확인해보세요.",
+  title: "알고 싶은 약, 알약 | 검색 선택하기",
+  description: "검색 방법을 선택해주세요",
 };
 
 const ProductsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <nav className={styles.nav}>
-        <Link href="/products/man">남성복</Link>
-        <Link href="/products/woman">여성복</Link>
-      </nav>
       <section className={styles.product}>{children}</section>
     </>
   );
