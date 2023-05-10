@@ -1,26 +1,26 @@
 "use client";
-import { useForm } from "react-hook-form";
-import Image from "next/image";
+import { useForm, FormProvider } from "react-hook-form";
+import OptionType from "./OptionType";
 
-interface ISplitType {
-  img: string | null;
+export interface IPillTypeInfo {
+  img: string;
   name: string;
   value: string;
 }
 
-const SplitType: ISplitType[] = [
+const LineType: IPillTypeInfo[] = [
   {
-    img: "line01",
+    img: "line/line01",
     name: "line-none",
     value: "none",
   },
   {
-    img: "line02",
+    img: "line/line02",
     name: "line-plus",
     value: "plus",
   },
   {
-    img: "line03",
+    img: "line/line03",
     name: "line-minus",
     value: "minus",
   },
@@ -31,49 +31,170 @@ const SplitType: ISplitType[] = [
   },
 ];
 
+const PillType: IPillTypeInfo[] = [
+  {
+    img: "pill-type/type01",
+    name: "type-tablet",
+    value: "tablet",
+  },
+  {
+    img: "pill-type/type02",
+    name: "type-hard",
+    value: "hard",
+  },
+  {
+    img: "pill-type/type03",
+    name: "type-soft",
+    value: "soft",
+  },
+  {
+    img: "",
+    name: "type-other",
+    value: "other",
+  },
+];
+const ShapeType: IPillTypeInfo[] = [
+  {
+    img: "shape/shape01",
+    name: "shape-circle",
+    value: "circle",
+  },
+  {
+    img: "shape/shape02",
+    name: "shape-ellipse",
+    value: "ellipse",
+  },
+  {
+    img: "shape/shape03",
+    name: "shape-half-circle",
+    value: "half-circle",
+  },
+  {
+    img: "shape/shape04",
+    name: "shape-triangle",
+    value: "triangle",
+  },
+  {
+    img: "shape/shape05",
+    name: "shape-rectangle",
+    value: "rectangle",
+  },
+  {
+    img: "shape/shape06",
+    name: "shape-diamond",
+    value: "diamond",
+  },
+  {
+    img: "shape/shape07",
+    name: "shape-long",
+    value: "long",
+  },
+  {
+    img: "shape/shape08",
+    name: "shape-hexagon",
+    value: "hexagon",
+  },
+  {
+    img: "shape/shape09",
+    name: "shape-octagon",
+    value: "octagon",
+  },
+  {
+    img: "",
+    name: "shape-other",
+    value: "other",
+  },
+];
+
+interface IColor {
+  name: string;
+}
+
+const ColorType: IColor[] = [
+  {
+    name: "white",
+  },
+  {
+    name: "yellow",
+  },
+  {
+    name: "orange",
+  },
+  {
+    name: "pink",
+  },
+  {
+    name: "red",
+  },
+  {
+    name: "brown",
+  },
+  {
+    name: "lightgreen",
+  },
+  {
+    name: "green",
+  },
+  {
+    name: "turquoise",
+  },
+  {
+    name: "blue",
+  },
+  {
+    name: "navy",
+  },
+  {
+    name: "wine",
+  },
+  {
+    name: "purple",
+  },
+  {
+    name: "gray",
+  },
+  {
+    name: "black",
+  },
+  {
+    name: "transparent",
+  },
+  {
+    name: "",
+  },
+];
+
 const TextPage = () => {
-  const { register, handleSubmit } = useForm();
+  const methods = useForm();
   const onSubmit = (data: any) => alert(JSON.stringify(data));
   // data type 정해야 함
 
   return (
-    <>
+    <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={methods.handleSubmit(onSubmit)}
         className="flex justify-center items-center flex-col"
       >
-        <input {...register("char_front", { required: true })} type="text" />
-        <input {...register("char_back", { required: true })} type="text" />
+        <input
+          {...methods.register("char_front", { required: true, min: 1 })}
+          type="text"
+          placeholder="알약 앞면 각인 글자"
+        />
+        <input
+          {...methods.register("char_back", { required: true, min: 1 })}
+          type="text"
+          placeholder="알약 뒷면 각인 글자"
+        />
 
-        <div className="flex justify-between">
-          {SplitType.map((type: ISplitType, idx: number) => (
-            <label htmlFor={type.name} key={idx}>
-              {typeof type.img == "string" ? (
-                <Image
-                  src={`/img/line/${type.img}.jpg`}
-                  alt={type.value}
-                  width={50}
-                  height={50}
-                />
-              ) : (
-                <span>기타</span>
-              )}
-              <input
-                {...register("split-type", { required: true })}
-                type="radio"
-                id={type.name}
-                style={{ display: "none" }}
-              />
-            </label>
-          ))}
-        </div>
+        <OptionType OptionType={LineType} />
+        <OptionType OptionType={PillType} />
+        <OptionType OptionType={ShapeType} />
 
-        <input {...register("pill_type", { required: true })} type="radio" />
-        <input {...register("shape", { required: true })} type="radio" />
-        <input {...register("color", { required: true })} type="checkbox" />
-        <input type="submit" />
+        <button type="submit" disabled={methods.formState.isSubmitting}>
+          검색하기
+        </button>
       </form>
-    </>
+    </FormProvider>
   );
 };
 
