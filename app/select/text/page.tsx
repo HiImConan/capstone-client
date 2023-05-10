@@ -38,12 +38,15 @@ const TextPage = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("text", { required: true })} type="text" />
-        <input {...register("text2", { required: true })} type="text" />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex justify-center items-center flex-col"
+      >
+        <input {...register("char_front", { required: true })} type="text" />
+        <input {...register("char_back", { required: true })} type="text" />
 
-        {SplitType.map((type: ISplitType, idx: number) => (
-          <>
+        <div className="flex justify-between">
+          {SplitType.map((type: ISplitType, idx: number) => (
             <label htmlFor={type.name} key={idx}>
               {typeof type.img == "string" ? (
                 <Image
@@ -53,18 +56,19 @@ const TextPage = () => {
                   height={50}
                 />
               ) : (
-                "기타"
+                <span>기타</span>
               )}
+              <input
+                {...register("split-type", { required: true })}
+                type="radio"
+                id={type.name}
+                style={{ display: "none" }}
+              />
             </label>
-            <input
-              {...register("split-type", { required: true })}
-              type="radio"
-              id={type.name}
-            />
-          </>
-        ))}
+          ))}
+        </div>
 
-        <input {...register("formulation", { required: true })} type="radio" />
+        <input {...register("pill_type", { required: true })} type="radio" />
         <input {...register("shape", { required: true })} type="radio" />
         <input {...register("color", { required: true })} type="checkbox" />
         <input type="submit" />
