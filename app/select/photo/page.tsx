@@ -28,8 +28,9 @@ const PhotoPage = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("/api/upload", {
+    const res = await fetch("http://3.37.14.192/upload", {
       method: "POST",
+      headers: { "Content-Type": "multipart/form-data" },
       body: formData,
     });
     console.log(res);
@@ -66,7 +67,7 @@ const PhotoPage = () => {
             width={150}
             height={150}
             alt="유저 입력"
-            onClick={() => frontInput.current?.click()}
+            onClick={() => backInput.current?.click()}
           />
 
           <input
