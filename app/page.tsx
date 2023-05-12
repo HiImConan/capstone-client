@@ -3,10 +3,17 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex justify-center items-center flex-col p-5">
-      <Image src="/img/logo/logo.png" alt="알약로고" width={400} height={200} />
+    <div className="flex justify-between items-center flex-col p-5 h-3/5">
+      <Image
+        src="/img/logo/logo-vertical.png"
+        alt="알약로고"
+        width={400}
+        height={200}
+      />
       <button>
-        <Link href="/select">시작하기</Link>
+        <Link href="/select" className="font-bold text-3xl cursor-pointer">
+          시작하기
+        </Link>
       </button>
     </div>
   );

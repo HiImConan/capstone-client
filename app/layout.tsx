@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import "./globals.css";
-import styles from "./layout.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "한국외대 종합설계 B3팀 프로젝트",
@@ -18,12 +18,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <header className={styles.header}>
-          <Link href="/">알고싶은 약, 알약</Link>
-          <nav className={styles.nav}>
-            <Link href="/select">검색 메뉴</Link>
-            <Link href="/about">팀 소개</Link>
+      <body className="flex flex-col h-screen justify-center pt-16">
+        <header className="absolute top-0 w-full flex justify-between items-center p-4 border-b-2 border-skyblue">
+          <Link href="/">
+            <Image
+              src="/img/logo/logo.png"
+              alt="알약로고"
+              width={100}
+              height={20}
+            />
+          </Link>
+          <nav>
+            <Link href="/select" className="px-2">
+              검색 메뉴
+            </Link>
+            <Link href="/about" className="px-2">
+              팀 소개
+            </Link>
           </nav>
         </header>
         {children}
