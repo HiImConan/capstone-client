@@ -25,7 +25,7 @@ export default function RootLayout({
               src="/img/logo/logo.png"
               alt="알약로고"
               width={100}
-              height={20}
+              height={100}
             />
           </Link>
           <nav>

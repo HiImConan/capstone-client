@@ -27,7 +27,7 @@ export const upload = async (req, res) => {
 
   formData.append("file", readStream);
 
-  const api = await fetch("http://localhost:3000/upload", {
+  const api = await fetch("http://3.37.14.192/upload", {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data; boundary=" + formData.getBoundary(),
