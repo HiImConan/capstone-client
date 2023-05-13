@@ -79,7 +79,7 @@ const PhotoPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center text-1xl">
+    <div className="flex flex-col justify-center items-center text-1xl pt-15">
       <div className="flex justify-center py-12">
         <div className="flex justify-center mr-5 relative w-64 h-64">
           {front.length > 0 ? (
@@ -181,15 +181,23 @@ const PhotoPage = () => {
         </div>
       </div>
 
-      <span className="text-sm text-gray-800 pb-7">
-        알고 싶은 약의 앞/뒷면을
-        <span className="font-semibold text-lg"> 정방향으로 정렬하여 </span>
-        촬영한 뒤 사진을 업로드해주세요.
-      </span>
+      <div className="flex flex-col justify-center items-center p-3 px-4 bg-gray-200  border-2 border-gray-300 rounded-lg">
+        <span className="text-sm text-gray-800 pb-2">
+          알고 싶은 약의 앞/뒷면을
+          <span className="font-semibold text-lg"> 정방향으로 정렬하여 </span>
+          촬영한 뒤 사진을 업로드해주세요.
+        </span>
+
+        <span className="text-sm text-gray-800">
+          첨부 가능한 사진의 용량은 최대
+          <span className="font-semibold text-lg"> 5MB </span>
+          입니다.
+        </span>
+      </div>
 
       <button
         type="button"
-        className="text-white disabled:bg-gray-300 disabled:cursor-not-allowed bg-blue-400 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-lg px-5 py-2.5 text-center"
+        className="text-white disabled:bg-gray-300 disabled:cursor-not-allowed bg-blue-400 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mt-6"
         disabled={front.length < 1 || back.length < 1}
         onClick={uploadFiles}
       >
