@@ -3,6 +3,9 @@ import React, { useMemo, useRef } from "react";
 import Image from "next/image";
 import { useState } from "react";
 
+const ALLOW_FILE_EXTENSION = "jpg,jpeg,png";
+const FILE_SIZE_MAX_LIMIT = 5 * 1024 * 1024; // 5MB
+
 const PhotoPage = () => {
   const [front, setFront] = useState<string>("");
   const [back, setBack] = useState<string>("");
@@ -13,25 +16,46 @@ const PhotoPage = () => {
 
   // 이미지 앞뒷면 세터
   const handleFrontImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
     const file = (e.target.files as FileList)[0];
-    console.log(file);
+
     if (!file) return;
+    if (!fileExtensionValid(file)) {
+      e.target.value = "";
+      alert(
+        `업로드 가능한 확장자가 아닙니다. [가능한 확장자 : ${ALLOW_FILE_EXTENSION}]`
+      );
+      return;
+    }
+    if (file.size > FILE_SIZE_MAX_LIMIT) {
+      e.target.value = "";
+      alert("업로드 가능한 최대 용량은 5MB입니다. ");
+      return;
+    }
     const url = URL.createObjectURL(file);
-    console.log(url);
+
     setFront(url);
     setFrontFile(file);
-    console.log(frontFile);
   };
   const handleBackImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = (e.target.files as FileList)[0];
-    console.log(file);
+
     if (!file) return;
+    if (!fileExtensionValid(file)) {
+      e.target.value = "";
+      alert(
+        `업로드 가능한 확장자가 아닙니다. [가능한 확장자 : ${ALLOW_FILE_EXTENSION}]`
+      );
+      return;
+    }
+    if (file.size > FILE_SIZE_MAX_LIMIT) {
+      e.target.value = "";
+      alert("업로드 가능한 최대 용량은 5MB입니다. ");
+      return;
+    }
     const url = URL.createObjectURL(file);
-    console.log(url);
+
     setBack(url);
     setBackFile(file);
-    console.log(backFile);
   };
 
   // 이미지 앞뒷면 미리보기
@@ -174,6 +198,19 @@ const PhotoPage = () => {
       </button>
     </div>
   );
+};
+
+const fileExtensionValid = ({ name }: { name: string }): boolean => {
+  const extension = removeFileName(name);
+  if (!(ALLOW_FILE_EXTENSION.indexOf(extension) > -1) || extension === "")
+    return false;
+  return true;
+};
+
+const removeFileName = (originalFileName: string): string => {
+  const lastIndex = originalFileName.lastIndexOf(".");
+  if (lastIndex < 0) return "";
+  return originalFileName.substring(lastIndex + 1).toLowerCase();
 };
 
 export default PhotoPage;
