@@ -62,17 +62,16 @@ const PhotoPage = () => {
   const uploadFiles = async () => {
     const formData = new FormData();
     {
-      frontFile && formData.append("file", frontFile);
+      frontFile && formData.append("img", frontFile);
     }
     {
-      backFile && formData.append("file", backFile);
+      backFile && formData.append("img", backFile);
     }
-    console.log(formData.getAll("file"));
+    console.log(formData.getAll("img"));
 
     const res = await fetch("http://3.37.14.192:3001/upload", {
       method: "POST",
-      headers: { "Content-Type": "multipart/form-data" },
-      body: formData,
+      body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
     });
     console.log(res);
     window.URL.revokeObjectURL(front); // 메모리 누수 방지
