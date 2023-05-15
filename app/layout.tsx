@@ -29,7 +29,7 @@ export default function RootLayout({
             />
           </Link>
           <nav>
-            <Link href="/select" className="px-2">
+            <Link href="/search" className="px-2">
               검색 메뉴
             </Link>
             <Link href="/about" className="px-2">

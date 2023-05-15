@@ -8,13 +8,13 @@ const ProductsPage = () => {
       </div>
       <div className="">
         <Link
-          href={`select/text`}
+          href={`search/text`}
           className="text-white bg-blue-400 hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-l-full p-8 text-center"
         >
           직접 입력하기
         </Link>
         <Link
-          href={`select/photo`}
+          href={`search/photo`}
           className="text-white bg-pink-400 hover:bg-pink-600 focus:outline-none focus:ring-4 focus:ring-pink-300 font-medium rounded-r-full p-8 text-center"
         >
           사진 검색하기

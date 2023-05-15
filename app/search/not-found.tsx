@@ -9,9 +9,11 @@ const NotFoundPage = () => {
         시도해주세요.
       </div>
       <li>
-        <Link href="select/photo">다시 촬영하기</Link>
+        <Link href="search/photo">다시 촬영하기</Link>
       </li>
-        <li><Link href="select/text">직접 입력하기</Link></li>
+      <li>
+        <Link href="search/text">직접 입력하기</Link>
+      </li>
     </>
   );
 };

@@ -11,7 +11,7 @@ export default function Home() {
         height={200}
       />
       <button className="mt-10">
-        <Link href="/select" className="font-bold text-3xl cursor-pointer">
+        <Link href="/search" className="font-bold text-3xl cursor-pointer">
           시작하기
         </Link>
       </button>
