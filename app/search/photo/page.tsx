@@ -73,7 +73,7 @@ const PhotoPage = () => {
       method: "POST",
       body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
     });
-    console.log(res);
+    console.log(res); // status 200 아니면 error.tsx로 연계
     window.URL.revokeObjectURL(front); // 메모리 누수 방지
     window.URL.revokeObjectURL(back);
   };
