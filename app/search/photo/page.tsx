@@ -69,7 +69,7 @@ const PhotoPage = () => {
     }
     console.log(formData.getAll("img"));
 
-    const res = await fetch("http://3.37.14.192:3001/upload", {
+    const res = await fetch("https://find-my-pills.shop/upload", {
       method: "POST",
       body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
     });
