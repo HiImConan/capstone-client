@@ -8,22 +8,22 @@ export const LineType: IPillTypeInfo[] = [
   {
     img: "line/line01",
     name: "line-none",
-    value: "none",
+    value: "",
   },
   {
     img: "line/line02",
     name: "line-plus",
-    value: "plus",
+    value: "+",
   },
   {
     img: "line/line03",
     name: "line-minus",
-    value: "minus",
+    value: "-",
   },
   {
     img: "",
     name: "line-other",
-    value: "other",
+    value: "기타",
   },
 ];
 
@@ -31,131 +31,93 @@ export const PillType: IPillTypeInfo[] = [
   {
     img: "pill-type/type01",
     name: "type-tablet",
-    value: "tablet",
+    value: "정제",
   },
   {
     img: "pill-type/type02",
     name: "type-hard",
-    value: "hard",
+    value: "경질캡슐제",
   },
   {
     img: "pill-type/type03",
     name: "type-soft",
-    value: "soft",
+    value: "연질캡슐제",
   },
   {
     img: "",
     name: "type-other",
-    value: "other",
+    value: "기타",
   },
 ];
 export const ShapeType: IPillTypeInfo[] = [
   {
     img: "shape/shape01",
     name: "shape-circle",
-    value: "circle",
+    value: "원형",
   },
   {
     img: "shape/shape02",
     name: "shape-ellipse",
-    value: "ellipse",
+    value: "타원형",
   },
   {
     img: "shape/shape03",
     name: "shape-half-circle",
-    value: "half-circle",
+    value: "반원형",
   },
   {
     img: "shape/shape04",
     name: "shape-triangle",
-    value: "triangle",
+    value: "삼각형",
   },
   {
     img: "shape/shape05",
     name: "shape-rectangle",
-    value: "rectangle",
+    value: "사각형",
   },
   {
     img: "shape/shape06",
     name: "shape-diamond",
-    value: "diamond",
+    value: "마름모형",
   },
   {
     img: "shape/shape07",
     name: "shape-long",
-    value: "long",
+    value: "장방형",
   },
   {
     img: "shape/shape08",
     name: "shape-hexagon",
-    value: "hexagon",
+    value: "육각형",
   },
   {
     img: "shape/shape09",
     name: "shape-octagon",
-    value: "octagon",
+    value: "팔각형",
   },
   {
     img: "",
     name: "shape-other",
-    value: "other",
+    value: "기타",
   },
 ];
 
-interface IColor {
-  name: string;
-}
-
-export const ColorType: IColor[] = [
-  {
-    name: "white",
-  },
-  {
-    name: "yellow",
-  },
-  {
-    name: "orange",
-  },
-  {
-    name: "pink",
-  },
-  {
-    name: "red",
-  },
-  {
-    name: "brown",
-  },
-  {
-    name: "lightgreen",
-  },
-  {
-    name: "green",
-  },
-  {
-    name: "turquoise",
-  },
-  {
-    name: "blue",
-  },
-  {
-    name: "navy",
-  },
-  {
-    name: "wine",
-  },
-  {
-    name: "purple",
-  },
-  {
-    name: "gray",
-  },
-  {
-    name: "black",
-  },
-  {
-    name: "transparent",
-  },
-  {
-    name: "",
-  },
+export const ColorType: IPillTypeInfo[] = [
+  { img: "", name: "white", value: "하양" },
+  { img: "", name: "yellow", value: "노랑" },
+  { img: "", name: "orange", value: "주황" },
+  { img: "", name: "pink", value: "분홍" },
+  { img: "", name: "red", value: "빨강" },
+  { img: "", name: "brown", value: "갈색" },
+  { img: "", name: "lightgreen", value: "연두" },
+  { img: "", name: "green", value: "초록" },
+  { img: "", name: "turquoise", value: "청록" },
+  { img: "", name: "blue", value: "파랑" },
+  { img: "", name: "navy", value: "남색" },
+  { img: "", name: "wine", value: "자주" },
+  { img: "", name: "purple", value: "보라" },
+  { img: "", name: "gray", value: "회색" },
+  { img: "", name: "black", value: "검정" },
+  { img: "", name: "transparent", value: "투명" },
+  { img: "", name: "기타", value: "" },
 ];

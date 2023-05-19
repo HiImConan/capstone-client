@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex flex-col justify-center h-screen">
+      <body className="flex flex-col justify-center items-center h-screen">
         <header className="absolute top-0 w-full flex justify-between items-center p-4 border-b-2 border-skyblue">
           <Link href="/">
             <Image
