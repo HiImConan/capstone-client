@@ -29,3 +29,11 @@
 | 사진검색                                    |
 | ![](/public/img/readme/사진검색-전.png)     |
 | ![](/public/img/readme/사진검색-후.png)     |
+
+<br>
+<br>
+
+## 새로 알게된 점
+
+- 미숙했던 await 사용 : response에도 await를 붙여줘야 깡통 값을 피한다
+  https://stackoverflow.com/questions/56200562/how-to-fix-response-type-cors-when-trying-to-create-payment-through-paypal
