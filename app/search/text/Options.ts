@@ -8,17 +8,17 @@ export const LineType: IPillTypeInfo[] = [
   {
     img: "line/line01",
     name: "line-none",
-    value: "",
+    value: "-",
   },
   {
     img: "line/line02",
     name: "line-plus",
-    value: "+",
+    value: "십자분할선",
   },
   {
     img: "line/line03",
     name: "line-minus",
-    value: "-",
+    value: "분할선",
   },
   {
     img: "",

@@ -1,8 +1,8 @@
 import { IPillTypeInfo } from "./Options";
-import { Field, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import Image from "next/image";
 
-const OptionType = ({
+const RadioBox = ({
   OptionType,
   onChange,
   value,
@@ -72,4 +72,4 @@ const OptionType = ({
     </div>
   );
 };
-export default OptionType;
+export default RadioBox;

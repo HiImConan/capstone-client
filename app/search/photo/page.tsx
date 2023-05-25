@@ -1,7 +1,9 @@
 "use client";
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import Error from "@/app/result/error";
 
 const ALLOW_FILE_EXTENSION = "jpg,jpeg,png";
 const FILE_SIZE_MAX_LIMIT = 5 * 1024 * 1024; // 5MB
@@ -11,8 +13,11 @@ const PhotoPage = () => {
   const [back, setBack] = useState<string>("");
   const [frontFile, setFrontFile] = useState<File>();
   const [backFile, setBackFile] = useState<File>();
+  const [loading, setLoading] = useState<boolean>(false);
   const frontInput = useRef<HTMLInputElement>(null);
   const backInput = useRef<HTMLInputElement>(null);
+
+  const router = useRouter();
 
   // 이미지 앞뒷면 세터
   const handleFrontImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +63,6 @@ const PhotoPage = () => {
     setBackFile(file);
   };
 
-  // 이미지 앞뒷면 미리보기
   const uploadFiles = async () => {
     const formData = new FormData();
     {
@@ -73,7 +77,16 @@ const PhotoPage = () => {
       method: "POST",
       body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
     });
-    console.log(res); // status 200 아니면 error.tsx로 연계
+    const response = await res.json();
+    if (response.success == true) {
+      // result page에서 postData로 가져와서 그쪽에서 돌려야 Loading state가 돌아가나?
+      console.log(response);
+      return response;
+    } else {
+      console.log(response);
+      return <Error />;
+    }
+
     window.URL.revokeObjectURL(front); // 메모리 누수 방지
     window.URL.revokeObjectURL(back);
   };

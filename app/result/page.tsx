@@ -1,5 +1,5 @@
 const ResultPage = () => {
-  return <></>;
+  return <>result page</>;
 };
 
 export default ResultPage;

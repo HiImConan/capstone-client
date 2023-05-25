@@ -1,12 +1,25 @@
 "use client";
-import { useForm, FormProvider, Controller } from "react-hook-form";
-import OptionType from "./OptionType";
+
+import {
+  useForm,
+  FormProvider,
+  Controller,
+  FieldValues,
+} from "react-hook-form";
+import RadioBox from "./RadioBox";
 import { LineType, PillType, ShapeType, ColorType } from "./Options";
 
 const TextPage = () => {
   const methods = useForm();
-  const onSubmit = (data: any) => alert(JSON.stringify(data));
-  // data type 정해야 함
+  const onSubmit = async (data: FieldValues) => {
+    console.log(data);
+    const res = await fetch("https://find-my-pills.shop/search/text", {
+      method: "POST",
+      body: JSON.stringify(data), // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
+    });
+    const result = await res.json();
+    console.log(result);
+  };
 
   return (
     <FormProvider {...methods}>
@@ -28,17 +41,13 @@ const TextPage = () => {
                 </div>
                 <div className="flex justify-start items-center gap-4 w-full">
                   <input
-                    {...methods.register("char_front", {
-                      min: 1,
-                    })}
+                    {...methods.register("char_front")}
                     type="text"
                     placeholder="앞면 각인 글자"
                     className="bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-400 focus:border-blue-400 block w-full p-3"
                   />
                   <input
-                    {...methods.register("char_back", {
-                      min: 1,
-                    })}
+                    {...methods.register("char_back")}
                     type="text"
                     placeholder="뒷면 각인 글자"
                     className="bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-400 focus:border-blue-400 block w-full p-3"
@@ -53,7 +62,7 @@ const TextPage = () => {
                   name="color"
                   control={methods.control}
                   render={({ field: { onChange, value } }) => (
-                    <OptionType
+                    <RadioBox
                       OptionType={ColorType}
                       onChange={onChange}
                       value={value}
@@ -69,7 +78,7 @@ const TextPage = () => {
                   name="shape"
                   control={methods.control}
                   render={({ field: { onChange, value } }) => (
-                    <OptionType
+                    <RadioBox
                       OptionType={ShapeType}
                       onChange={onChange}
                       value={value}
@@ -85,7 +94,7 @@ const TextPage = () => {
                   name="pill_type"
                   control={methods.control}
                   render={({ field: { onChange, value } }) => (
-                    <OptionType
+                    <RadioBox
                       OptionType={PillType}
                       onChange={onChange}
                       value={value}
@@ -101,7 +110,7 @@ const TextPage = () => {
                   name="line"
                   control={methods.control}
                   render={({ field: { onChange, value } }) => (
-                    <OptionType
+                    <RadioBox
                       OptionType={LineType}
                       onChange={onChange}
                       value={value}
@@ -110,7 +119,10 @@ const TextPage = () => {
                 />
               </div>
             </div>
-            <button type="submit" onClick={onSubmit}>
+            <button
+              type="submit"
+              className="text-white disabled:bg-gray-300 disabled:cursor-not-allowed bg-blue-400 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mt-6"
+            >
               검색하기
             </button>
           </div>
