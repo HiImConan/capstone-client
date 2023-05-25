@@ -8,7 +8,7 @@ export const fileExtensionValid = ({ name }: { name: string }): boolean => {
   return true;
 };
 
-export const removeFileName = (originalFileName: string): string => {
+const removeFileName = (originalFileName: string): string => {
   const lastIndex = originalFileName.lastIndexOf(".");
   if (lastIndex < 0) return "";
   return originalFileName.substring(lastIndex + 1).toLowerCase();
