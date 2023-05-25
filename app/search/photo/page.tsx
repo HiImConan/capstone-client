@@ -2,18 +2,16 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Error from "@/app/result/error";
+import {FILE_SIZE_MAX_LIMIT, ALLOW_FILE_EXTENSION, fileExtensionValid, removeFileName} from './FileValidationCheck'
 
-const ALLOW_FILE_EXTENSION = "jpg,jpeg,png";
-const FILE_SIZE_MAX_LIMIT = 5 * 1024 * 1024; // 5MB
 
 const PhotoPage = () => {
   const [front, setFront] = useState<string>("");
   const [back, setBack] = useState<string>("");
   const [frontFile, setFrontFile] = useState<File>();
   const [backFile, setBackFile] = useState<File>();
-  const [loading, setLoading] = useState<boolean>(false);
   const frontInput = useRef<HTMLInputElement>(null);
   const backInput = useRef<HTMLInputElement>(null);
 
@@ -220,17 +218,6 @@ const PhotoPage = () => {
   );
 };
 
-const fileExtensionValid = ({ name }: { name: string }): boolean => {
-  const extension = removeFileName(name);
-  if (!(ALLOW_FILE_EXTENSION.indexOf(extension) > -1) || extension === "")
-    return false;
-  return true;
-};
 
-const removeFileName = (originalFileName: string): string => {
-  const lastIndex = originalFileName.lastIndexOf(".");
-  if (lastIndex < 0) return "";
-  return originalFileName.substring(lastIndex + 1).toLowerCase();
-};
 
 export default PhotoPage;
