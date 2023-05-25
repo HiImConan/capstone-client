@@ -1,5 +1,4 @@
 import { IPillTypeInfo } from "./Options";
-import { useFormContext } from "react-hook-form";
 import Image from "next/image";
 
 const RadioBox = ({
@@ -11,7 +10,6 @@ const RadioBox = ({
   onChange: (...event: any[]) => void;
   value: string;
 }) => {
-  const { register } = useFormContext();
   return (
     <div className="flex justify-start flex-wrap w-full">
       {OptionType.map((type: IPillTypeInfo) =>

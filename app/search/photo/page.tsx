@@ -77,18 +77,18 @@ const PhotoPage = () => {
       method: "POST",
       body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
     });
+
     const response = await res.json();
     if (response.success == true) {
       // result page에서 postData로 가져와서 그쪽에서 돌려야 Loading state가 돌아가나?
       console.log(response);
+      window.URL.revokeObjectURL(front); // 메모리 누수 방지
+      window.URL.revokeObjectURL(back);
       return response;
     } else {
       console.log(response);
       return <Error />;
     }
-
-    window.URL.revokeObjectURL(front); // 메모리 누수 방지
-    window.URL.revokeObjectURL(back);
   };
 
   return (
