@@ -10,12 +10,22 @@ import RadioBox from "./RadioBox";
 import { LineType, PillType, ShapeType, ColorType } from "./Options";
 
 const TextPage = () => {
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: {
+      char_front: "",
+      char_back: "",
+      color: "전체",
+      shape: "전체",
+      pill_type: "전체",
+      line: "전체",
+    },
+  });
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
     const res = await fetch("https://find-my-pills.shop/search/text", {
       method: "POST",
-      body: JSON.stringify(data), // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
     });
     const result = await res.json();
     console.log(result);

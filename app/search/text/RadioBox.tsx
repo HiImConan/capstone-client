@@ -13,7 +13,7 @@ const RadioBox = ({
   return (
     <div className="flex justify-start flex-wrap w-full">
       {OptionType.map((type: IPillTypeInfo) =>
-        OptionType.length !== 17 ? (
+        OptionType.length !== 18 ? (
           <div className="flex" key={type.name}>
             <input
               type="radio"
@@ -36,7 +36,7 @@ const RadioBox = ({
                 />
               ) : (
                 <span className="w-12 h-12 flex justify-center items-center">
-                  기타
+                  {type.value}
                 </span>
               )}
             </label>
@@ -54,13 +54,17 @@ const RadioBox = ({
             <label
               htmlFor={type.name}
               className={
-                type.name &&
-                `flex justify-center items-center p-1 cursor-pointer rounded-sm border border-gray-200 peer-checked:border-blue-500 hover:text-${type.name}-600 hover:bg-${type.name}-100`
+                "flex justify-center items-center p-1 cursor-pointer rounded-sm border border-gray-200 peer-checked:border-blue-500"
               }
             >
-              <span className="w-12 h-12 flex justify-center items-center">
-                {type.value}
-              </span>
+              <div className="w-12 h-12">
+                <div
+                  className={type.name && `bg-${type.name}-400` + " h-3/5"}
+                />
+                <div className="flex justify-center items-center text-sm">
+                  {type.value}
+                </div>
+              </div>
             </label>
           </div>
         )

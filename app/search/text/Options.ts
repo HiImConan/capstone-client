@@ -25,6 +25,11 @@ export const LineType: IPillTypeInfo[] = [
     name: "line-other",
     value: "기타",
   },
+  {
+    img: "",
+    name: "line-all",
+    value: "전체",
+  },
 ];
 
 export const PillType: IPillTypeInfo[] = [
@@ -47,6 +52,11 @@ export const PillType: IPillTypeInfo[] = [
     img: "",
     name: "type-other",
     value: "기타",
+  },
+  {
+    img: "",
+    name: "type-all",
+    value: "전체",
   },
 ];
 export const ShapeType: IPillTypeInfo[] = [
@@ -100,6 +110,11 @@ export const ShapeType: IPillTypeInfo[] = [
     name: "shape-other",
     value: "기타",
   },
+  {
+    img: "",
+    name: "shape-all",
+    value: "전체",
+  },
 ];
 
 export const ColorType: IPillTypeInfo[] = [
@@ -119,5 +134,6 @@ export const ColorType: IPillTypeInfo[] = [
   { img: "", name: "gray", value: "회색" },
   { img: "", name: "black", value: "검정" },
   { img: "", name: "transparent", value: "투명" },
-  { img: "", name: "기타", value: "" },
+  { img: "", name: "color-other", value: "기타" },
+  { img: "", name: "color-all", value: "전체" },
 ];
