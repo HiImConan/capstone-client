@@ -137,3 +137,20 @@ export const ColorType: IPillTypeInfo[] = [
   { img: "", name: "color-other", value: "기타" },
   { img: "", name: "color-all", value: "전체" },
 ];
+
+export interface ISearchResult {
+  buy_class: string;
+  char_back: string;
+  char_front: string;
+  color_back: string;
+  color_front: string;
+  company: string;
+  id: number;
+  line_back: string;
+  line_front: string;
+  name: string;
+  pill_effect: string;
+  pill_img: string;
+  pill_type: string;
+  shape: string;
+}
