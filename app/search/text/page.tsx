@@ -6,19 +6,21 @@ import {
   Controller,
   FieldValues,
 } from "react-hook-form";
-import RadioBox from "./RadioBox";
+import RadioBox from "@/app/search/text/components/RadioBox";
 import {
   LineType,
   PillType,
   ShapeType,
   ColorType,
   ISearchResult,
-} from "./Options";
+} from "./types/Options";
 import { useState } from "react";
-import ResultCard from "./ResultCard";
+import ResultCard from "@/app/search/text/components/ResultCard";
+import Loading from "@/app/loading";
 
 const TextPage = () => {
   const [searchResult, setSearchResult] = useState<ISearchResult[] | []>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const methods = useForm({
     defaultValues: {
       char_front: "",
@@ -31,6 +33,7 @@ const TextPage = () => {
   });
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
+    setLoading(true);
     const res = await fetch("https://find-my-pills.shop/search/text", {
       method: "POST",
       body: JSON.stringify(data),
@@ -39,6 +42,7 @@ const TextPage = () => {
     const result = await res.json();
     console.log(result);
     setSearchResult(result);
+    setLoading(false);
   };
 
   return (
@@ -153,7 +157,7 @@ const TextPage = () => {
           </form>
         </div>
       </FormProvider>
-      <ResultCard searchResult={searchResult} />
+      {loading ? <Loading /> : <ResultCard searchResult={searchResult} />}
     </>
   );
 };

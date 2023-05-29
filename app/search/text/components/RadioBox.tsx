@@ -1,4 +1,4 @@
-import { IPillTypeInfo } from "./Options";
+import { IPillTypeInfo } from "../types/Options";
 import Image from "next/image";
 
 const RadioBox = ({

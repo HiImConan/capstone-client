@@ -1,14 +1,16 @@
 "use client";
 import React, { useRef } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import useCustomRouter from "../hooks/useCustomRouter";
 import { useState } from "react";
-import Error from "@/app/error";
+import { useRecoilState } from "recoil";
+import { imgSearchResultState } from "../../atoms/index";
 import {
   FILE_SIZE_MAX_LIMIT,
   ALLOW_FILE_EXTENSION,
   fileExtensionValid,
-} from "./FileValidationCheck";
+} from "./utils/FileValidationCheck";
+import Error from "@/app/error";
 import Loading from "@/app/loading";
 
 const PhotoPage = () => {
@@ -17,10 +19,12 @@ const PhotoPage = () => {
   const [frontFile, setFrontFile] = useState<File>();
   const [backFile, setBackFile] = useState<File>();
   const [loading, setLoading] = useState<Boolean>(false);
+  const [imgSearchResult, setImgSearchResult] =
+    useRecoilState(imgSearchResultState);
   const frontInput = useRef<HTMLInputElement>(null);
   const backInput = useRef<HTMLInputElement>(null);
 
-  const router = useRouter();
+  const { push } = useCustomRouter();
 
   // 이미지 앞뒷면 세터
   const handleFrontImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +92,8 @@ const PhotoPage = () => {
       console.log(response);
       window.URL.revokeObjectURL(front); // 메모리 누수 방지
       window.URL.revokeObjectURL(back);
-      router.push("/result");
+      setImgSearchResult(response);
+      push("/result");
     } else {
       console.log(response);
       return <Error />;
