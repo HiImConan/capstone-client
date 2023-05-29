@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
+import RecoilRootWrapper from "./RecoilRootWrapper";
 
 export const metadata: Metadata = {
   title: "한국외대 종합설계 B3팀 프로젝트",
@@ -37,7 +38,7 @@ export default function RootLayout({
             </Link>
           </nav>
         </header>
-        {children}
+        <RecoilRootWrapper>{children}</RecoilRootWrapper>
       </body>
     </html>
   );
