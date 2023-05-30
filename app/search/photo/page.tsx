@@ -10,7 +10,6 @@ import {
   ALLOW_FILE_EXTENSION,
   fileExtensionValid,
 } from "./utils/FileValidationCheck";
-import Error from "@/app/error";
 import Loading from "@/app/loading";
 
 const PhotoPage = () => {
@@ -94,11 +93,10 @@ const PhotoPage = () => {
       window.URL.revokeObjectURL(back);
       setImgSearchResult(response);
       push("/result");
+      setLoading(false);
     } else {
       console.log(response);
-      return <Error />;
     }
-    setLoading(false);
   };
 
   return (
@@ -134,7 +132,7 @@ const PhotoPage = () => {
                   className="flex flex-col items-center"
                 >
                   <div className="flex flex-col items-center justify-center w-64 h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100">
-                    <div className="flex flex-col items-center justify-center pt-5">
+                    <div className="flex flex-col items-center justify-center pt-5 relative">
                       <Image
                         src="/img/assets/capsule.png"
                         width={150}
@@ -183,7 +181,7 @@ const PhotoPage = () => {
               ) : (
                 <label htmlFor="backImg" className="flex flex-col items-center">
                   <div className="flex flex-col items-center justify-center w-64 h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100">
-                    <div className="flex flex-col items-center justify-center pt-5">
+                    <div className="flex flex-col items-center justify-center pt-5 relative">
                       <Image
                         src="/img/assets/capsule.png"
                         width={150}
