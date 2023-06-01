@@ -29,31 +29,31 @@ export const DRUG_INFO_LIST = [
   },
   {
     key: "efcyQesitm",
-    value: "이 약의 효능은 무엇입니까?",
+    value: "약의 효능",
   },
   {
     key: "useMethodQesitm",
-    value: "이 약은 어떻게 사용합니까?",
+    value: "사용방법",
   },
   {
     key: "atpnWarnQesitm",
-    value: "이 약을 사용하기 전에 반드시 알아야 할 내용은 무엇입니까?",
+    value: "약을 사용하기 전에 반드시 알아야 할 내용",
   },
   {
     key: "atpnQesitm",
-    value: "이 약의 사용상 주의사항은 무엇입니까?",
+    value: "사용상 주의사항",
   },
   {
     key: "intrcQesitm",
-    value: "이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?",
+    value: "이 약을 사용하는 동안 주의해야 할 약 또는 음식",
   },
   {
     key: "seQesitm",
-    value: "이 약은 어떤 이상반응이 나타날 수 있습니까?",
+    value: "약을 사용할 때 나타날 수 있는 이상반응",
   },
   {
     key: "depositMethodQesitm",
-    value: "이 약은 어떻게 보관해야 합니까?",
+    value: "보관방법",
   },
   {
     key: "openDe",
