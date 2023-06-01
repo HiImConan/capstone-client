@@ -33,7 +33,10 @@ const ResultPage = () => {
           <Link
             href={{
               pathname: "/result/detail",
-              query: { itemSeq: `${imgSearchResult.id}` },
+              query: {
+                itemName: `${imgSearchResult.name}`,
+                itemSeq: `${imgSearchResult.id}`,
+              },
             }}
             className="text-white bg-blue-400 hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-l-full p-4 text-center w-28"
           >
