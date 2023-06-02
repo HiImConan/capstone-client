@@ -46,28 +46,28 @@ const TextPage = () => {
   };
 
   return (
-    <>
+    <div className="w-3/5">
       <FormProvider {...methods}>
-        <div className="relative shadow-md sm:rounded-lg w-3/5">
+        <div className="relative shadow-md sm:rounded-lg">
           <form
             onSubmit={methods.handleSubmit(onSubmit)}
-            className="w-full p-5"
+            className="w-11/12 p-5 mx-auto"
           >
             <div className="w-full flex flex-col justify-center items-center">
-              <div className="p-5 text-lg font-semibold text-left text-gray-900 bg-white min-w-full">
+              <div className="p-5 text-2xl tracking-tight font-semibold text-left text-gray-900 bg-white min-w-full">
                 알약 직접 검색하기
-                <p className="mt-1 text-sm font-normal text-gray-400">
+                <p className="mt-1 text-lg font-normal text-gray-400">
                   찾고 싶은 알약의 각인, 색상, 모양, 제형 그리고 분할선 정보를
                   입력하세요. 하나의 정보만 입력해도 검색이 되지만, 여러 개를
-                  입력할 수록 정확한 결과를 얻을 수 있습니다.
+                  입력할수록 정확한 결과를 얻을 수 있습니다.
                 </p>
               </div>
               <div className="w-full">
-                <div className="flex justify-start items-center gap-1 h-16">
-                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase bg-gray-50 font-semibold rounded-t-lg">
+                <div className="flex justify-start items-center gap-1 my-1">
+                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase font-semibold rounded-t-lg">
                     각인
                   </div>
-                  <div className="flex justify-start items-center gap-4 w-full">
+                  <div className="flex justify-start items-center gap-2 w-full">
                     <input
                       {...methods.register("char_front")}
                       type="text"
@@ -82,8 +82,8 @@ const TextPage = () => {
                     />
                   </div>
                 </div>
-                <div className="flex justify-start items-center gap-1 h-32">
-                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase bg-gray-50 font-semibold">
+                <div className="flex justify-start items-center gap-1 my-1">
+                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase  font-semibold">
                     색상
                   </div>
                   <Controller
@@ -98,8 +98,8 @@ const TextPage = () => {
                     )}
                   />
                 </div>
-                <div className="flex justify-start items-center gap-1 h-32">
-                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase bg-gray-50 font-semibold">
+                <div className="flex justify-start items-center gap-1 my-1">
+                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase  font-semibold">
                     모양
                   </div>
                   <Controller
@@ -114,8 +114,8 @@ const TextPage = () => {
                     )}
                   />
                 </div>
-                <div className="flex justify-start items-center gap-1 h-16">
-                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase bg-gray-50 font-semibold">
+                <div className="flex justify-start items-center gap-1 my-1">
+                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase  font-semibold">
                     제형
                   </div>
                   <Controller
@@ -130,8 +130,8 @@ const TextPage = () => {
                     )}
                   />
                 </div>
-                <div className="flex justify-start items-center gap-1 h-16">
-                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase bg-gray-50 font-semibold rounded-b-lg">
+                <div className="flex justify-start items-center gap-1 my-1">
+                  <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase  font-semibold rounded-b-lg">
                     분할선
                   </div>
                   <Controller
@@ -158,7 +158,7 @@ const TextPage = () => {
         </div>
       </FormProvider>
       {loading ? <Loading /> : <ResultCard searchResult={searchResult} />}
-    </>
+    </div>
   );
 };
 

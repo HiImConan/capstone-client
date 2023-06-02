@@ -14,7 +14,7 @@ export const imgSearchResultState = atom<ISearchResult>({
   default: {
     success: true,
     name: "타이레놀8시간이알서방정(아세트아미노펜)",
-    id: "202200407",
+    id: "2022004077",
     pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
   },
 });

@@ -91,7 +91,7 @@ const PhotoPage = () => {
       console.log(response);
       window.URL.revokeObjectURL(front); // 메모리 누수 방지
       window.URL.revokeObjectURL(back);
-      setImgSearchResult(response);
+      // setImgSearchResult(response);
       router.push("/result");
       setLoading(false);
     } else {

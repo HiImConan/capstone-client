@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function NotFound({ itemSeq }: { itemSeq: string }) {
+const NothingPage = ({ itemSeq }: { itemSeq: string }) => {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <div className="text-8xl">😿</div>
@@ -47,4 +47,5 @@ export default function NotFound({ itemSeq }: { itemSeq: string }) {
       </div>
     </div>
   );
-}
+};
+export default NothingPage;
