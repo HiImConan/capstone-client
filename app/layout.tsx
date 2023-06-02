@@ -19,14 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex flex-col justify-center items-center h-screen pt-16">
+      <body className="flex flex-col items-center h-screen pt-16">
         <header className="absolute top-0 w-full flex justify-between items-center p-4 border-b-2 border-skyblue bg-white">
-          <Link href="/">
+          <Link href="/" className="w-24 h-full">
             <Image
               src="/img/logo/logo.png"
               alt="알약로고"
-              width={100}
-              height={100}
+              width={96}
+              height={48}
             />
           </Link>
           <nav>

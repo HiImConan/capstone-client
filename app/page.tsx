@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex justify-between items-center flex-col">
+    <div className="flex justify-center items-center flex-col h-screen gap-12">
       <Image
         src="/img/logo/logo-vertical.png"
         alt="알약로고"
