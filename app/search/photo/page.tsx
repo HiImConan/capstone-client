@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import Image from "next/image";
-import useCustomRouter from "../hooks/useCustomRouter";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { imgSearchResultState } from "../../atoms/index";
@@ -22,8 +22,7 @@ const PhotoPage = () => {
     useRecoilState(imgSearchResultState);
   const frontInput = useRef<HTMLInputElement>(null);
   const backInput = useRef<HTMLInputElement>(null);
-
-  const { push } = useCustomRouter();
+  const router = useRouter();
 
   // 이미지 앞뒷면 세터
   const handleFrontImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,21 +80,28 @@ const PhotoPage = () => {
 
     setLoading(true);
 
-    const res = await fetch("https://find-my-pills.shop/upload", {
-      method: "POST",
-      body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
-    });
+    try {
+      const res = await fetch("https://find-my-pills.shop/upload", {
+        method: "POST",
+        body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
+      });
 
-    const response = await res.json();
-    if (response.success == true) {
-      console.log(response);
-      window.URL.revokeObjectURL(front); // 메모리 누수 방지
-      window.URL.revokeObjectURL(back);
-      setImgSearchResult(response);
-      push("/result");
+      const response = await res.json();
+      if (response.success == true) {
+        console.log(response);
+        window.URL.revokeObjectURL(front); // 메모리 누수 방지
+        window.URL.revokeObjectURL(back);
+        setImgSearchResult(response);
+        router.push("/result");
+        setLoading(false);
+      } else {
+        console.log(response);
+        router.push("/search/not-found");
+      }
+    } catch (error) {
+      console.log(error);
       setLoading(false);
-    } else {
-      console.log(response);
+      // router.push("/error");
     }
   };
 
