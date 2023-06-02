@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRecoilValue } from "recoil";
-import { imgSearchResultState, ISearchResult } from "../atoms";
+import { imgSearchResultState, ISearchResult } from "../lib/atoms";
 
 const ResultPage = () => {
   const imgSearchResult = useRecoilValue<ISearchResult>(imgSearchResultState);

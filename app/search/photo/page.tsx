@@ -1,16 +1,17 @@
 "use client";
-import React, { useRef } from "react";
+import React, { Suspense, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { imgSearchResultState } from "../../atoms/index";
+import { imgSearchResultState } from "../../lib/atoms/index";
 import {
   FILE_SIZE_MAX_LIMIT,
   ALLOW_FILE_EXTENSION,
   fileExtensionValid,
 } from "./utils/FileValidationCheck";
 import Loading from "@/app/loading";
+import { InternalServerError } from "@/app/lib/exceptions";
 
 const PhotoPage = () => {
   const [front, setFront] = useState<string>("");
@@ -80,28 +81,22 @@ const PhotoPage = () => {
 
     setLoading(true);
 
-    try {
-      const res = await fetch("https://find-my-pills.shop/upload", {
-        method: "POST",
-        body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
-      });
+    const res = await fetch("https://find-my-pills.shop/upload", {
+      method: "POST",
+      body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
+    });
 
-      const response = await res.json();
-      if (response.success == true) {
-        console.log(response);
-        window.URL.revokeObjectURL(front); // 메모리 누수 방지
-        window.URL.revokeObjectURL(back);
-        setImgSearchResult(response);
-        router.push("/result");
-        setLoading(false);
-      } else {
-        console.log(response);
-        router.push("/search/not-found");
-      }
-    } catch (error) {
-      console.log(error);
+    const response = await res.json();
+    if (res.status === 200) {
+      console.log(response);
+      window.URL.revokeObjectURL(front); // 메모리 누수 방지
+      window.URL.revokeObjectURL(back);
+      setImgSearchResult(response);
+      router.push("/result");
       setLoading(false);
-      router.push("/result/500");
+    } else {
+      console.log(res.status);
+      throw new InternalServerError();
     }
   };
 
@@ -110,8 +105,8 @@ const PhotoPage = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col justify-center items-center text-1xl pt-15">
-          <div className="flex justify-center py-12">
+        <div className="flex flex-col justify-center items-center h-full text-1xl">
+          <div className="flex justify-center pb-12">
             <div className="flex justify-center mr-5 relative w-64 h-64">
               {front.length > 0 ? (
                 <div>
