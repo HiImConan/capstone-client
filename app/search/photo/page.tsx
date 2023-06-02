@@ -101,7 +101,7 @@ const PhotoPage = () => {
     } catch (error) {
       console.log(error);
       setLoading(false);
-      // router.push("/error");
+      router.push("/result/500");
     }
   };
 
