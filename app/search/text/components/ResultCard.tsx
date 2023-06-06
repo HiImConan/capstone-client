@@ -21,7 +21,7 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
         // table로 만들자 그냥
         <div className="flex flex-col justify-center items-center gap-4">
           {searchResult.map((pill) => (
-            <div>{pill.name}</div>
+            <div key={pill.name}>{pill.name}</div>
           ))}
         </div>
       )}
