@@ -8,10 +8,10 @@ import { DRUG_INFO_LIST, IDrugInfo } from "../constant/type";
 import Loading from "@/app/loading";
 import Nothing from "../nothing/page";
 
-export default function DetailPage() {
+const DetailPage = () => {
   const [drugInfo, setDrugInfo] = useState<IDrugInfo | null>(null);
   const searchParams = useSearchParams();
-  const itemSeq = searchParams.get("itemSeq");
+  const itemSeq = searchParams.get("itemSeq") as string;
   const itemName = searchParams.get("itemName");
 
   const getDrugInfo = async (itemSeq: string) => {
@@ -36,7 +36,7 @@ export default function DetailPage() {
   return (
     <>
       <meta
-        http-equiv="Content-Security-Policy"
+        httpEquiv="Content-Security-Policy"
         content="upgrade-insecure-requests"
       />
       <div className="flex flex-col justify-center items-center gap-4 h-full">
@@ -70,7 +70,7 @@ export default function DetailPage() {
               ))}
             </div>
           ) : (
-            <Nothing itemSeq={itemSeq as string} />
+            <Nothing searchParams={{ itemSeq: itemSeq }} />
           )
         ) : (
           <Loading />
@@ -78,4 +78,5 @@ export default function DetailPage() {
       </div>
     </>
   );
-}
+};
+export default DetailPage;

@@ -1,7 +1,12 @@
+import React, { FunctionComponent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const NothingPage = ({ itemSeq }: { itemSeq: string }) => {
+interface Props {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+const NothingPage: FunctionComponent<Props> = ({ searchParams }) => {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <div className="text-8xl">😿</div>
@@ -23,7 +28,7 @@ const NothingPage = ({ itemSeq }: { itemSeq: string }) => {
           />
         </Link>
         <Link
-          href={`https://nedrug.mfds.go.kr/searchDrug?itemSeq=${itemSeq}`}
+          href={`https://nedrug.mfds.go.kr/searchDrug?itemSeq=${searchParams.itemSeq}`}
           className="border-4 border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500 rounded-full p-4 text-center h-full flex justify-center items-center"
         >
           <Image
@@ -34,7 +39,7 @@ const NothingPage = ({ itemSeq }: { itemSeq: string }) => {
           />
         </Link>
         <Link
-          href={`https://www.druginfo.co.kr/search2/search.aspx?q=${itemSeq}`}
+          href={`https://www.druginfo.co.kr/search2/search.aspx?q=${searchParams.itemSeq}`}
           className="border-4 border-blue-400 focus:outline-none focus:ring-4 focus:ring-blue-400 rounded-full p-4 text-center h-full flex justify-center items-center"
         >
           <Image
