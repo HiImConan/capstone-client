@@ -35,6 +35,7 @@ const TextPage = () => {
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
     setLoading(true);
+    setIsCollapsed(true);
     const res = await fetch("https://find-my-pills.shop/search/text", {
       method: "POST",
       body: JSON.stringify(data),
@@ -43,23 +44,29 @@ const TextPage = () => {
     const result = await res.json();
     console.log(result);
     setSearchResult(result);
-    // setLoading(false);
+    setLoading(false);
   };
 
   return (
     <div className="w-3/5 mt-4">
       <FormProvider {...methods}>
-        <div className="relative border border-gray-200 rounded-lg mb-4">
+        <div
+          className={
+            isCollapsed
+              ? "relative border border-gray-200 rounded-lg mb-4 bg-gray-100"
+              : "relative border border-gray-200 shadow-md rounded-lg mb-4"
+          }
+        >
           <form
             onSubmit={methods.handleSubmit(onSubmit)}
             className="w-11/12 p-5 mx-auto"
           >
-            <div className="w-full flex flex-col justify-center items-center">
+            <div className="w-full flex flex-col justify-center items-center select-none">
               <div
                 className={
                   isCollapsed
-                    ? "p-5 text-2xl tracking-tight font-semibold text-left text-gray-900 bg-white mb-4"
-                    : "p-5 text-2xl tracking-tight font-semibold text-left text-gray-900 bg-white"
+                    ? "p-5 text-2xl tracking-tight font-semibold text-left text-gray-900 mb-4"
+                    : "p-5 text-2xl tracking-tight font-semibold text-left text-gray-900"
                 }
               >
                 알약 직접 검색하기
@@ -91,7 +98,13 @@ const TextPage = () => {
                   </svg>
                 </div>
               </div>
-              <div className={isCollapsed ? "hidden" : "w-full"}>
+              <div
+                className={
+                  isCollapsed
+                    ? "hidden"
+                    : "w-full rounded-lg border border-gray-100 p-4"
+                }
+              >
                 <div className="flex justify-start items-center gap-1 my-1">
                   <div className="h-full w-24 flex justify-center items-center text-center text-gray-700 uppercase font-semibold rounded-t-lg">
                     각인
@@ -191,7 +204,13 @@ const TextPage = () => {
         </div>
       </FormProvider>
       {loading ? (
-        <section className="h-3/5">
+        <section
+          className={
+            isCollapsed
+              ? "h-3/5 border border-gray-300 shadow-md rounded-lg"
+              : "h-3/5 border border-gray-200 rounded-lg"
+          }
+        >
           <Loading />
         </section>
       ) : (
