@@ -34,42 +34,48 @@ export default function DetailPage() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 h-full">
-      {drugInfo ? (
-        drugInfo.hasOwnProperty("itemName") ? (
-          <div className="flex flex-col justify-start items-center gap-4 h-max overflow-y-auto">
-            <div className="text-3xl font-bold">{drugInfo.itemName}</div>
-            <div className="flex justify-center items-center w-full">
-              <Image
-                src={drugInfo.itemImage as string}
-                width={500}
-                height={250}
-                alt="item image"
-              />
-            </div>
-            {DRUG_INFO_LIST.map((category) => (
-              <div
-                key={category.key}
-                className="flex flex-col items-start gap-2 w-1/2"
-              >
-                <div className="text-xl text-blue-400 font-semibold">
-                  {category.value}
-                </div>
-                <div>
-                  {Object.entries(drugInfo)
-                    .filter(([key]) => key == category.key)[0][1]
-                    .replace(/(<br>|<br\/>|<br \/>)/g, "\r\n")
-                    .replace(/(<p>|<\/p>|)/g, "")}
-                </div>
+    <>
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="upgrade-insecure-requests"
+      />
+      <div className="flex flex-col justify-center items-center gap-4 h-full">
+        {drugInfo ? (
+          drugInfo.hasOwnProperty("itemName") ? (
+            <div className="flex flex-col justify-start items-center gap-4 h-max overflow-y-auto">
+              <div className="text-3xl font-bold">{drugInfo.itemName}</div>
+              <div className="flex justify-center items-center w-full">
+                <Image
+                  src={drugInfo.itemImage as string}
+                  width={500}
+                  height={250}
+                  alt="item image"
+                />
               </div>
-            ))}
-          </div>
+              {DRUG_INFO_LIST.map((category) => (
+                <div
+                  key={category.key}
+                  className="flex flex-col items-start gap-2 w-1/2"
+                >
+                  <div className="text-xl text-blue-400 font-semibold">
+                    {category.value}
+                  </div>
+                  <div>
+                    {Object.entries(drugInfo)
+                      .filter(([key]) => key == category.key)[0][1]
+                      .replace(/(<br>|<br\/>|<br \/>)/g, "\r\n")
+                      .replace(/(<p>|<\/p>|)/g, "")}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <Nothing itemSeq={itemSeq as string} />
+          )
         ) : (
-          <Nothing itemSeq={itemSeq as string} />
-        )
-      ) : (
-        <Loading />
-      )}
-    </div>
+          <Loading />
+        )}
+      </div>
+    </>
   );
 }
