@@ -2,6 +2,7 @@ import { ISearchResult } from "../types/Options";
 import Image from "next/image";
 import Pagination from "./Pagination";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
   const [searchResultList, setSearchResultList] = useState<ISearchResult[]>([]);
@@ -34,7 +35,6 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
   const loadPage = (num: number) => {
     setPresentPage(num);
     setSearchResultList(searchResult.slice(offset(num), offset(num) + limit));
-    console.log(num, lastPage);
     {
       lastPage > 5 && num > 3
         ? num <= lastPage - 3
@@ -67,10 +67,10 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
         ) : (
           <div className="flex flex-col justify-center items-center text-center first-line:gap-4">
             <div className="relative overflow-x-auto shadow-md">
-              <table className="w-full text-sm text-left text-gray-500">
+              <table className="w-full text-sm text-gray-500">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                   <tr>
-                    <th scope="col" className="px-5 py-3 text-center">
+                    <th scope="col" className="px-5 py-3 text-center w-28">
                       식별 이미지
                     </th>
                     <th scope="col" className="px-5 py-3 text-center">
@@ -86,7 +86,7 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
                     <th scope="col" className="px-5 py-3 text-center">
                       색상
                     </th>
-                    <th scope="col" className="px-5 py-3 text-center">
+                    <th scope="col" className="px-5 py-3 text-center w-24">
                       회사명
                     </th>
                   </tr>
@@ -97,29 +97,43 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
                       key={pill.name}
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >
-                      <th
-                        scope="row"
-                        className="px-5 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
+                      <th scope="row" className="px-3 py-2 w-28">
                         <Image
                           src={pill.pill_img}
-                          width={110}
-                          height={110}
+                          width={112}
+                          height={112}
                           alt="pillimg"
                         />
                       </th>
-                      <td className="px-5 py-4 text-center w-3/12">
-                        {pill.name}
+                      <td className="px-5 py-4 text-center w-1/4 cursor-pointer">
+                        <Link
+                          href={{
+                            pathname: "/result/detail",
+                            query: {
+                              itemName: `${pill.name}`,
+                              itemSeq: `${pill.id}`,
+                            },
+                          }}
+                          className="w-44 truncate"
+                        >
+                          {pill.name}
+                        </Link>
                       </td>
                       <td className="px-5 py-4 text-center">
                         {pill.pill_type.replace(/(\|)/g, " / ")}
                       </td>
-                      <td className="px-5 py-4 text-center">
-                        <p>{pill.char_front}</p>
-                        <p>{pill.char_back}</p>
+                      <td className="px-5 py-4 w-1/6 text-center">
+                        <p className="w-28 truncate">{pill.char_front}</p>
+                        <p className="w-28 truncate">{pill.char_back}</p>
                       </td>
-                      <td className="px-5 py-4 text-center">{pill.shape}</td>
-                      <td className="px-5 py-4 text-center">{pill.company}</td>
+                      <td className="px-5 py-4 text-center">
+                        {pill.color_front !== pill.color_back
+                          ? `${pill.color_front} / ${pill.color_back}`
+                          : pill.color_front}
+                      </td>
+                      <td className="px-5 py-4 text-center">
+                        <p className="w-28 truncate">{pill.company}</p>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
