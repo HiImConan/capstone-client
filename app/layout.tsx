@@ -39,6 +39,7 @@ export default function RootLayout({
           </nav>
         </header>
         <RecoilRootWrapper>{children}</RecoilRootWrapper>
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </body>
     </html>
   );

@@ -108,15 +108,14 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
                       <td className="px-5 py-4 text-center w-1/4 cursor-pointer">
                         <Link
                           href={{
-                            pathname: "/result/detail",
+                            pathname: `/result/${pill.id}`,
                             query: {
                               itemName: `${pill.name}`,
                               itemSeq: `${pill.id}`,
                             },
                           }}
-                          className="w-44 truncate"
                         >
-                          {pill.name}
+                          <p className="w-44 truncate">{pill.name}</p>
                         </Link>
                       </td>
                       <td className="px-5 py-4 text-center">
