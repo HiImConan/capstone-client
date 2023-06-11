@@ -58,9 +58,8 @@ const Pagination = ({
           </div>
         </li>
         {pageList.map((num: number) => (
-          <li>
+          <li key={num}>
             <div
-              key={num}
               onClick={() => loadPage(num)}
               className={
                 num == presentPage
