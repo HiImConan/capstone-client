@@ -12,16 +12,34 @@ import {
   PillType,
   ShapeType,
   ColorType,
+  NewScoringType,
+  NewFormType,
+  NewShapeType,
+  NewColorType,
+  NewMenuType,
   ISearchResult,
 } from "./types/Options";
-import { useState } from "react";
+import { RefObject, useState } from "react";
 import ResultCard from "@/app/search/text/components/ResultCard";
 import Loading from "@/app/loading";
+import DropdownModal from "./components/DropdownModal";
+import Image from "next/image";
+import { useComponentVisible } from "./hooks/useComponentVisible";
 
 const TextPage = () => {
   const [searchResult, setSearchResult] = useState<ISearchResult[] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const {
+    componentRef: modalRef,
+    isImprintCol,
+    isShapeCol,
+    isColorCol,
+    isFormCol,
+    isScoringCol,
+    handleModalCollapse,
+  } = useComponentVisible();
+
   const methods = useForm({
     defaultValues: {
       char_front: "",
@@ -49,7 +67,7 @@ const TextPage = () => {
 
   return (
     <div className="w-3/5 mt-4">
-      <FormProvider {...methods}>
+      {/* <FormProvider {...methods}>
         <div
           className={
             isCollapsed
@@ -189,19 +207,125 @@ const TextPage = () => {
                   />
                 </div>
               </div>
-              <button
-                type="submit"
-                className={
-                  isCollapsed
-                    ? "hidden"
-                    : "text-white disabled:bg-gray-300 disabled:cursor-not-allowed bg-blue-400 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mt-6"
-                }
-              >
-                검색하기
-              </button>
             </div>
           </form>
+
+          <button
+            type="submit"
+            className={
+              isCollapsed
+                ? "hidden"
+                : "text-white disabled:bg-gray-300 disabled:cursor-not-allowed bg-blue-400 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mt-6"
+            }
+          >
+            검색하기
+          </button>
         </div>
+      </FormProvider> */}
+      <FormProvider {...methods}>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className="w-11/12 p-5 mx-auto"
+        >
+          <div className="w-full flex gap-2 justify-center items-center select-none text-black bg-gray-300 relative">
+            {NewMenuType.map((menu, i) => (
+              <div
+                key={menu.value}
+                className="flex flex-col justify-center items-center w-24 h-24 p-4 border-2 border-gray-300 rounded-lg bg-gray-500/75 text-white text-sm hover:bg-gray-400"
+                onClick={() => handleModalCollapse(menu.name)}
+                ref={(element) => (modalRef!.current[i] = element)}
+              >
+                <Image src={menu.img} height={80} width={80} alt={menu.value} />
+                <div>{menu.value}</div>
+              </div>
+            ))}
+            <div
+              className={
+                isImprintCol
+                  ? "flex justify-center items-center text-center text-black bg-gray-300 aboslute "
+                  : "hidden"
+              }
+            >
+              <div>
+                <input
+                  {...methods.register("char_front")}
+                  type="text"
+                  placeholder="앞면 각인 글자"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-400 focus:border-blue-400 block w-full p-3"
+                />
+              </div>
+              <div>
+                <input
+                  {...methods.register("char_back")}
+                  type="text"
+                  placeholder="뒷면 각인 글자"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-400 focus:border-blue-400 block w-full p-3"
+                />
+              </div>
+            </div>
+
+            <div className={isShapeCol ? "absolute" : "hidden"}>
+              <div>
+                <Controller
+                  name="shape"
+                  control={methods.control}
+                  render={({ field: { onChange, value } }) => (
+                    <DropdownModal
+                      OptionType={NewShapeType}
+                      onChange={onChange}
+                      value={value}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+            <div className={isColorCol ? "absolute" : "hidden"}>
+              <div>
+                <Controller
+                  name="color"
+                  control={methods.control}
+                  render={({ field: { onChange, value } }) => (
+                    <DropdownModal
+                      OptionType={NewColorType}
+                      onChange={onChange}
+                      value={value}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+            <div className={isFormCol ? "absolute" : "hidden"}>
+              <div>
+                <Controller
+                  name="pill_type"
+                  control={methods.control}
+                  render={({ field: { onChange, value } }) => (
+                    <DropdownModal
+                      OptionType={NewFormType}
+                      onChange={onChange}
+                      value={value}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+            <div className={isScoringCol ? "absolute" : "hidden"}>
+              <div>
+                <Controller
+                  name="line"
+                  control={methods.control}
+                  render={({ field: { onChange, value } }) => (
+                    <DropdownModal
+                      OptionType={NewScoringType}
+                      onChange={onChange}
+                      value={value}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+        </form>
       </FormProvider>
       {loading ? (
         <section

@@ -11,6 +11,8 @@ const nextConfig = {
         pathname: "/pbp/cmn/itemImageDownload/**",
       },
     ],
+
+    formats: ["image/webp"],
   },
 };
 

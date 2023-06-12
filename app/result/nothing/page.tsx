@@ -1,7 +1,9 @@
+"use client";
+
 import React, { FunctionComponent } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Tooltip, Button } from "flowbite-react";
+import { Tooltip } from "flowbite-react";
 
 interface Props {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -15,12 +17,12 @@ const NothingPage: FunctionComponent<Props> = ({ searchParams }) => {
         <div className="text-3xl font-bold">이런!</div>
         <div className="text-2xl">검색하고자 하는 알약의 정보가 없습니다.</div>
         <p className="text-center px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm">
-          본 서비스에서 활용하고 있는 "e약은요" 서비스는 일반소비자 눈높이에
+          본 서비스에서 활용하고 있는 'e약은요' 서비스는 일반소비자 눈높이에
           맞춘 이해하기 쉬운 의약품 정보 제공을 위해 마련된
           의약품개요정보입니다.
           <br />
           의약품에 관한 모든 내용을 담고 있지 않으며 자세한 사항은 식약처
-          의약품안전나라의 "의약품상세정보"를 참고하시기 바랍니다.
+          의약품안전나라의 '의약품상세정보'를 참고하시기 바랍니다.
           <br />본 정보는 법적 효력을 가지는 것이 아닙니다.
         </p>
       </div>
