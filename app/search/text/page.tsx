@@ -83,7 +83,11 @@ const TextPage = () => {
             {NewMenuType.map((menu, i) => (
               <div className="relative" key={menu.value}>
                 <div
-                  className="flex flex-col justify-center items-center w-28 h-28 p-4 border-2 border-gray-300 rounded-lg bg-gray-500/75 text-white text-sm hover:bg-gray-400 drop-shadow-md"
+                  className={
+                    watchList[i] !== "전체" && watchList[i]
+                      ? "flex flex-col justify-center items-center w-28 h-28 p-4 border-2 border-gray-300 rounded-lg bg-gray-600 text-white text-sm hover:bg-gray-500 drop-shadow-md"
+                      : "flex flex-col justify-center items-center w-28 h-28 p-4 border-2 border-gray-300 rounded-lg bg-gray-500/75 text-white text-sm hover:bg-gray-400 drop-shadow-md"
+                  }
                   onClick={() => handleModalCollapse(menu.name)}
                   ref={(element) => (modalRef!.current[i] = element)}
                 >
