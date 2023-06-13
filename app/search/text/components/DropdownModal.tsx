@@ -1,5 +1,4 @@
 "use client";
-import { IPillTypeInfo } from "../types/Options";
 import Image from "next/image";
 import { useFormContext, useForm } from "react-hook-form";
 import {
@@ -22,9 +21,11 @@ const DropdownModal = ({ index }: { index: number }) => {
   return (
     <div
       className={
-        index !== 0
-          ? "flex w-fit p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-10"
-          : "flex w-[280px] p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-66px] z-10"
+        index == 0
+          ? "flex w-[280px] p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-66px] z-10"
+          : index < 3
+          ? "inline-grid grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-10 min-w-max"
+          : "inline-grid grid-cols-4 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-10 min-w-max"
       }
     >
       {index !== 0 ? (
@@ -32,7 +33,11 @@ const DropdownModal = ({ index }: { index: number }) => {
           <div
             // type="submit"
             key={type.name}
-            className="rounded-lg bg-gray-200 w-20 h-20 checked:bg-gray-400 "
+            className={
+              getValues(type.default) == type.value
+                ? "rounded-lg bg-gray-300 w-20 h-20"
+                : "rounded-lg bg-gray-200 w-20 h-20"
+            }
           >
             <input
               {...register(CategoryIndex[index - 1])}
@@ -47,18 +52,30 @@ const DropdownModal = ({ index }: { index: number }) => {
               className="flex flex-col justify-center items-center cursor-pointer"
             >
               {getValues(type.default) == type.value ? (
-                <Image
-                  src={type.selected_img}
-                  width={60}
-                  height={60}
-                  alt={type.value}
-                />
+                <>
+                  <Image
+                    src={type.selected_img}
+                    width={60}
+                    height={60}
+                    alt={type.value}
+                  />
+                  <div className="flex text-center text-sm text-blue-900 font-semibold pb-2">
+                    {type.value == "-" ? "없음" : type.value}
+                  </div>
+                </>
               ) : (
-                <Image src={type.img} width={60} height={60} alt={type.value} />
+                <>
+                  <Image
+                    src={type.img}
+                    width={60}
+                    height={60}
+                    alt={type.value}
+                  />
+                  <div className="flex text-center text-sm text-gray-500 pb-2">
+                    {type.value == "-" ? "없음" : type.value}
+                  </div>
+                </>
               )}
-              <div className="flex text-center text-sm text-gray-500">
-                {type.value}
-              </div>
             </label>
           </div>
         ))
