@@ -16,15 +16,16 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
   const lastPage = Number.isInteger(pageListLength)
     ? pageListLength
     : Math.ceil(pageListLength);
-  const wholePageList = [...Array(lastPage).keys()].map(
-    (element) => element + 1
-  );
 
   const updatePagination = () => {
     setSearchResultList(
       searchResult.slice(offset(presentPage), offset(presentPage) + limit)
     );
-    setPageList(wholePageList.slice(0, 5));
+    setPageList(
+      Array(5)
+        .fill("")
+        .map((v, i) => (v = i + 1))
+    );
     setPresentPage(1);
   };
 
@@ -38,9 +39,21 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
     {
       lastPage > 5 && num > 3
         ? num <= lastPage - 3
-          ? setPageList(wholePageList.slice(num - 3, num + 2))
-          : setPageList(wholePageList.slice(lastPage - 5))
-        : setPageList(wholePageList.slice(0, 5));
+          ? setPageList(
+              Array(5)
+                .fill("")
+                .map((v, i) => (v = num - 2 + i))
+            )
+          : setPageList(
+              Array(5)
+                .fill("")
+                .map((v, i) => (v = lastPage - 4 + i))
+            )
+        : setPageList(
+            Array(5)
+              .fill("")
+              .map((v, i) => (v = i + 1))
+          );
     }
   };
 

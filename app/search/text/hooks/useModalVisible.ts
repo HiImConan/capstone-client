@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 
-export const useComponentVisible = () => {
+export const useModalVisible = () => {
   const [index, setIndex] = useState<number>(0);
   const [isImprintCol, setIsImprintCol] = useState<boolean>(false);
   const [isShapeCol, setIsShapeCol] = useState<boolean>(false);
@@ -11,6 +11,13 @@ export const useComponentVisible = () => {
   const componentRef = useRef<HTMLDivElement[] | HTMLFormElement[] | null[]>(
     []
   );
+  const collapseState = [
+    isImprintCol,
+    isShapeCol,
+    isColorCol,
+    isFormCol,
+    isScoringCol,
+  ];
 
   const handleModalCollapse = (category: string) => {
     switch (category) {
@@ -67,10 +74,10 @@ export const useComponentVisible = () => {
 
   const handleClickOutside = (e: Event) => {
     const current = componentRef.current[index];
-    console.log(current);
 
     // 모달 창이 열려있고 이벤트 발생 지점이 form의 요소가 아닐 때만 모달을 꺼주도록 함
     if (current && !current.contains(e.target as Node)) {
+      console.log(current);
       console.log(e.target);
       handleModalCollapse("");
     }
@@ -88,11 +95,7 @@ export const useComponentVisible = () => {
 
   return {
     componentRef,
-    isImprintCol,
-    isShapeCol,
-    isColorCol,
-    isFormCol,
-    isScoringCol,
+    collapseState,
     handleModalCollapse,
   };
 };
