@@ -14,9 +14,11 @@ export interface ISearchResult {
 const ResultPage = () => {
   const [imgSearchResult, setImgSearchResult] = useState<ISearchResult[]>();
   useEffect(() => {
-    const resString = window.localStorage.getItem("res");
-    const resObj: ISearchResult[] = resString && JSON.parse(resString);
-    setImgSearchResult(resObj);
+    if (typeof window !== "undefined" && window.localStorage) {
+      const resString = window.localStorage.getItem("res");
+      const resObj: ISearchResult[] = resString && JSON.parse(resString);
+      setImgSearchResult(resObj);
+    }
   }, []);
 
   return (
