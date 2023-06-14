@@ -15,14 +15,12 @@ const DetailPage = () => {
   const itemName = searchParams.get("itemName");
 
   const getDrugInfo = async (itemSeq: string) => {
-    console.log(itemSeq);
     const res = await fetch(
       `${DRUG_INFO_BASE_URL}?serviceKey=${SERVICE_KEY}&pageNo=1&numOfRows=3&itemSeq=${itemSeq}&type=json`
     );
     const result = await res.json();
     if (result.body.hasOwnProperty("items")) {
       setDrugInfo(result.body.items[0] as IDrugInfo);
-      console.log(result.body.items[0]);
     } else {
       setDrugInfo({});
     }
@@ -30,16 +28,15 @@ const DetailPage = () => {
 
   useEffect(() => {
     getDrugInfo(itemSeq as string);
-    console.log(drugInfo);
   }, []);
 
   return (
     <>
-      <meta
+      {/* <meta
         httpEquiv="Content-Security-Policy"
         content="upgrade-insecure-requests"
-      />
-      <div className="flex flex-col justify-center items-center gap-4 h-full">
+      /> */}
+      <div className="flex flex-col justify-center items-center gap-4 h-full my-20">
         {drugInfo ? (
           drugInfo.hasOwnProperty("itemName") ? (
             <div className="flex flex-col justify-start items-center gap-4 h-max overflow-y-auto">
@@ -60,12 +57,13 @@ const DetailPage = () => {
                   <div className="text-xl text-blue-400 font-semibold">
                     {category.value}
                   </div>
-                  <div>
-                    {Object.entries(drugInfo)
-                      .filter(([key]) => key == category.key)[0][1]
-                      .replace(/(<br>|<br\/>|<br \/>)/g, "\r\n")
-                      .replace(/(<p>|<\/p>|)/g, "")}
-                  </div>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: Object.entries(drugInfo).filter(
+                        ([key]) => key == category.key
+                      )[0][1],
+                    }}
+                  ></div>
                 </div>
               ))}
             </div>
