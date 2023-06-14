@@ -1,3 +1,4 @@
+"use client";
 import { ISearchResult } from "../types/Options";
 import Image from "next/image";
 import Pagination from "./Pagination";

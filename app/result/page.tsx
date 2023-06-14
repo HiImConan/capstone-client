@@ -33,7 +33,7 @@ const ResultPage = () => {
             className="flex justify-start items-center gap-4 w-full"
             key={item.id}
           >
-            <div className="text-2xl font-semibold">{index + 1}.</div>
+            <div className="text-2xl font-semibold w-8">{index + 1}.</div>
 
             <Link
               href={{
