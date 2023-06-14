@@ -64,7 +64,7 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
         className={
           searchResult.length > 0
             ? "bg-white border border-gray-200 shadow-md rounded-lg flex justify-center items-center"
-            : "bg-white border border-gray-200 shadow-md rounded-lg flex justify-center items-center mb-8"
+            : "bg-white border border-gray-200 shadow-md rounded-lg flex justify-center items-center mb-8 relative -z-20"
         }
       >
         {searchResult.length === 0 ? (

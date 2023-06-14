@@ -22,12 +22,12 @@ const DropdownModal = ({ index }: { index: number }) => {
     <div
       className={
         index == 0
-          ? "flex w-[280px] p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-68px] z-20"
+          ? "flex w-[280px] p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-68px] z-50"
           : index == 1
-          ? "inline-grid grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-20 min-w-max"
+          ? "inline-grid grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-50 min-w-max"
           : index == 2
-          ? "inline-grid grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-196px] z-20 min-w-max"
-          : "inline-grid grid-cols-4 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-20 min-w-max"
+          ? "inline-grid grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-196px] z-50 min-w-max"
+          : "inline-grid grid-cols-4 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-50 min-w-max"
       }
     >
       {index !== 0 ? (

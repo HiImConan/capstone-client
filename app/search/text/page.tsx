@@ -12,7 +12,6 @@ import { useModalVisible } from "./hooks/useModalVisible";
 const TextPage = () => {
   const [searchResult, setSearchResult] = useState<ISearchResult[] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const {
     componentRef: modalRef,
     collapseState,
@@ -44,7 +43,6 @@ const TextPage = () => {
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
     setLoading(true);
-    setIsCollapsed(true);
     const res = await fetch("https://find-my-pills.shop/search/text", {
       method: "POST",
       body: JSON.stringify(data),
@@ -63,11 +61,11 @@ const TextPage = () => {
   };
 
   return (
-    <div className="w-[800px] mt-4">
+    <div className="w-[800px] mt-4 relative">
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
-          className="p-5 mx-auto bg-gray-200 rounded-lg mb-4 flex flex-col justify-center items-center"
+          className="p-5 mx-auto bg-gray-200 rounded-lg mb-4 flex flex-col justify-center items-center relative z-50"
         >
           <div className="p-5 text-2xl tracking-tight font-semibold text-left text-gray-900">
             알약 직접 검색하기
@@ -152,13 +150,7 @@ const TextPage = () => {
         </form>
       </FormProvider>
       {loading ? (
-        <section
-          className={
-            isCollapsed
-              ? "h-3/5 border border-gray-300 shadow-md rounded-lg"
-              : "h-3/5 border border-gray-200 rounded-lg"
-          }
-        >
+        <section className="h-3/5 border border-gray-300 shadow-md rounded-lg">
           <Loading />
         </section>
       ) : (
