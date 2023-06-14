@@ -36,10 +36,10 @@ const DetailPage = () => {
         httpEquiv="Content-Security-Policy"
         content="upgrade-insecure-requests"
       /> */}
-      <div className="flex flex-col justify-center items-center gap-4 h-full my-20">
+      <div className="flex flex-col justify-center items-center gap-4 h-full">
         {drugInfo ? (
           drugInfo.hasOwnProperty("itemName") ? (
-            <div className="flex flex-col justify-start items-center gap-4 h-max overflow-y-auto">
+            <div className="flex flex-col justify-start items-center gap-4 h-max overflow-y-auto py-20">
               <div className="text-3xl font-bold">{drugInfo.itemName}</div>
               <div className="flex justify-center items-center w-full">
                 <Image

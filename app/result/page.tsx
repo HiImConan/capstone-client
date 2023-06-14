@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export interface ISearchResult {
   success: boolean;
@@ -11,8 +12,12 @@ export interface ISearchResult {
 }
 
 const ResultPage = () => {
-  const resString = window.localStorage.getItem("res");
-  const imgSearchResult: ISearchResult[] = resString && JSON.parse(resString);
+  const [imgSearchResult, setImgSearchResult] = useState<ISearchResult[]>();
+  useEffect(() => {
+    const resString = window.localStorage.getItem("res");
+    const resObj: ISearchResult[] = resString && JSON.parse(resString);
+    setImgSearchResult(resObj);
+  }, []);
 
   return (
     <div className="flex flex-col justify-center items-center h-full gap-4 my-20">
@@ -21,8 +26,11 @@ const ResultPage = () => {
       </div>
 
       <div className="flex flex-col justify-start items-center w-full mb-8">
-        {imgSearchResult.map((item: ISearchResult, index) => (
-          <div className="flex justify-start items-center gap-4 w-full">
+        {imgSearchResult?.map((item: ISearchResult, index) => (
+          <div
+            className="flex justify-start items-center gap-4 w-full"
+            key={item.id}
+          >
             <div className="text-2xl font-semibold">{index + 1}.</div>
 
             <Link
