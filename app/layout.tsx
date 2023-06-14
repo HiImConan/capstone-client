@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
-import RecoilRootWrapper from "./RecoilRootWrapper";
 
 export const metadata: Metadata = {
   title: "한국외대 종합설계 B3팀 프로젝트",
@@ -19,7 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex flex-col items-center h-screen pt-16">
+      <body
+        className="flex flex-col items-center h-screen pt-16"
+        suppressHydrationWarning={true}
+      >
         <header className="absolute top-0 w-full flex justify-between items-center p-4 border-b-2 border-skyblue bg-white">
           <Link href="/" className="w-24 h-full">
             <Image
@@ -38,7 +40,7 @@ export default function RootLayout({
             </Link>
           </nav>
         </header>
-        <RecoilRootWrapper>{children}</RecoilRootWrapper>
+        {children}
       </body>
     </html>
   );
