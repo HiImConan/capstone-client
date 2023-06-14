@@ -52,6 +52,8 @@ const ResultPage = () => {
                   height={100}
                   alt="result img"
                   className="rounded-lg"
+                  onLoadingComplete={(img) => console.log(img.src)}
+                  onError={(e) => console.error(e.target)}
                 />
               </div>
               <div className="text-xl">{item.name}</div>
