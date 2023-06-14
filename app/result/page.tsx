@@ -32,7 +32,7 @@ const ResultPage = () => {
         <div className="w-full flex justify-center items-center">
           <Link
             href={{
-              pathname: "/result/detail",
+              pathname: `/result/${imgSearchResult.id}`,
               query: {
                 itemName: `${imgSearchResult.name}`,
                 itemSeq: `${imgSearchResult.id}`,
