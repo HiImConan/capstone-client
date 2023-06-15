@@ -25,10 +25,12 @@ const DropdownModal = ({ index }: { index: number }) => {
         index == 0
           ? "flex w-[280px] p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-68px] left-0 z-50"
           : index == 1
-          ? "inline-grid grid-cols-4 sm:grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-50 min-w-max"
+          ? "inline-grid grid-cols-4 sm:grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] left-[-185px] z-50 min-w-max"
           : index == 2
           ? "inline-grid grid-cols-4 sm:grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-196px] z-50 min-w-max"
-          : "inline-grid grid-cols-4 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-50 min-w-max"
+          : index == 3
+          ? "inline-grid grid-cols-4 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] right-[-120px] z-50 min-w-max"
+          : "inline-grid grid-cols-4 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] right-0 z-50 min-w-max"
       }
     >
       {index !== 0 ? (
