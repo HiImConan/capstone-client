@@ -61,7 +61,7 @@ const TextPage = () => {
   };
 
   return (
-    <div className="w-[800px] mt-4 relative">
+    <div className="lg:w-[800px] sm:w-4/5 w-4/5 mt-4 relative">
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
@@ -70,21 +70,21 @@ const TextPage = () => {
           <div className="p-5 text-2xl tracking-tight font-semibold text-left text-gray-900">
             알약 직접 검색하기
             <div className="flex justify-between items-center gap-12 sm:gap-8">
-              <p className="mt-1 text-lg font-normal text-gray-500">
+              <p className="mt-1 text-sm leading-relaxed sm:text-lg font-normal text-gray-500">
                 찾고 싶은 알약의 각인, 색상, 모양, 제형 그리고 분할선 정보를
                 입력하세요. 하나의 정보만 입력해도 검색이 되지만, 여러 개를
                 입력할수록 정확한 결과를 얻을 수 있습니다.
               </p>
             </div>
           </div>
-          <div className="flex gap-2 justify-center items-center select-none text-black">
+          <div className="flex gap-1 sm:gap-2 justify-center items-center select-none text-black">
             {NewMenuType.map((menu, i) => (
               <div className="relative" key={menu.value}>
                 <div
                   className={
                     watchList[i] !== "전체" && watchList[i]
-                      ? "flex flex-col justify-center items-center w-28 h-28 p-4 border-2 border-gray-300 rounded-lg bg-gray-600 text-white text-sm hover:bg-gray-500 drop-shadow-md"
-                      : "flex flex-col justify-center items-center w-28 h-28 p-4 border-2 border-gray-300 rounded-lg bg-gray-500/75 text-white text-sm hover:bg-gray-400 drop-shadow-md"
+                      ? "flex flex-col justify-center items-center w-16 h-16 p-2 sm:w-28 sm:h-28 sm:p-4 border-2 border-gray-300 rounded-lg bg-gray-600 text-white text-sm hover:bg-gray-500 drop-shadow-md"
+                      : "flex flex-col justify-center items-center w-16 h-16 p-2 sm:w-28 sm:h-28 sm:p-4 border-2 border-gray-300 rounded-lg bg-gray-500/75 text-white text-sm hover:bg-gray-400 drop-shadow-md"
                   }
                   onClick={() => handleModalCollapse(menu.name)}
                   ref={(element) => (modalRef!.current[i] = element)}
@@ -104,7 +104,7 @@ const TextPage = () => {
                       alt={menu.value}
                     />
                   )}
-                  <div>{menu.value}</div>
+                  <div className="hidden sm:block">{menu.value}</div>
                   {collapseState[i] && <DropdownModal index={i} />}
                 </div>
                 {watchList[i] !== "전체" && watchList[i] && (

@@ -107,7 +107,6 @@ const PhotoPage = () => {
       console.log(res.status);
       throw new InternalServerError();
     }
-    setLoading(false);
   };
 
   return (

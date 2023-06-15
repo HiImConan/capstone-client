@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="flex flex-col items-center h-screen pt-16"
+        className="flex flex-col items-center h-full sm:h-screen pt-16"
         suppressHydrationWarning={true}
       >
         <header className="absolute top-0 w-full flex justify-between items-center p-4 border-b-2 border-skyblue bg-white">

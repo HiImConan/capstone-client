@@ -23,11 +23,11 @@ const DropdownModal = ({ index }: { index: number }) => {
     <div
       className={
         index == 0
-          ? "flex w-[280px] p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-68px] z-50"
+          ? "flex w-[280px] p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-68px] left-0 z-50"
           : index == 1
-          ? "inline-grid grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-50 min-w-max"
+          ? "inline-grid grid-cols-4 sm:grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-50 min-w-max"
           : index == 2
-          ? "inline-grid grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-196px] z-50 min-w-max"
+          ? "inline-grid grid-cols-4 sm:grid-cols-8 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-196px] z-50 min-w-max"
           : "inline-grid grid-cols-4 p-2 gap-2 border-2 border-gray-300 rounded-lg bg-white absolute bottom-[-106px] z-50 min-w-max"
       }
     >
@@ -38,8 +38,8 @@ const DropdownModal = ({ index }: { index: number }) => {
             key={type.name}
             className={
               getValues(type.default) == type.value
-                ? "rounded-lg bg-gray-300 w-20 h-20"
-                : "rounded-lg bg-gray-200 w-20 h-20"
+                ? "rounded-lg bg-gray-300 w-14 h-14 sm:w-20 sm:h-20"
+                : "rounded-lg bg-gray-200 w-14 h-14 sm:w-20 sm:h-20"
             }
           >
             <input
