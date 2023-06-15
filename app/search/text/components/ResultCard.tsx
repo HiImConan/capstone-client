@@ -24,7 +24,7 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
       searchResult.slice(offset(presentPage), offset(presentPage) + limit)
     );
     setPageList(
-      Array(5)
+      Array(lastPage < 5 ? lastPage : 5)
         .fill("")
         .map((v, i) => (v = i + 1))
     );
@@ -52,7 +52,7 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
                 .map((v, i) => (v = lastPage - 4 + i))
             )
         : setPageList(
-            Array(5)
+            Array(lastPage < 5 ? lastPage : 5)
               .fill("")
               .map((v, i) => (v = i + 1))
           );
