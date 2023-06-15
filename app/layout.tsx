@@ -35,9 +35,9 @@ export default function RootLayout({
             <Link href="/search" className="px-2">
               검색 메뉴
             </Link>
-            <Link href="/about" className="px-2">
+            {/* <Link href="/about" className="px-2">
               팀 소개
-            </Link>
+            </Link> */}
           </nav>
         </header>
         {children}
