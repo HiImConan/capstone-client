@@ -1,4 +1,5 @@
 "use client";
+
 import { ISearchResult } from "../types/Options";
 import Image from "next/image";
 import Pagination from "./Pagination";
@@ -117,6 +118,7 @@ const ResultCard = ({ searchResult }: { searchResult: ISearchResult[] }) => {
                           width={112}
                           height={112}
                           alt="pillimg"
+                          unoptimized
                         />
                       </th>
                       <td className="px-5 py-4 text-center w-1/4 cursor-pointer">
