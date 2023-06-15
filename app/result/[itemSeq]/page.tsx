@@ -38,7 +38,13 @@ const DetailPage = () => {
         httpEquiv="Content-Security-Policy"
         content="upgrade-insecure-requests"
       />
-      <div className="flex flex-col justify-center items-center gap-4 h-max">
+      <div
+        className={
+          drugInfo && drugInfo.hasOwnProperty("itemName")
+            ? "flex flex-col justify-center items-center gap-4 h-max"
+            : "flex flex-col justify-center items-center gap-4 h-full"
+        }
+      >
         {drugInfo ? (
           drugInfo.hasOwnProperty("itemName") ? (
             <>
