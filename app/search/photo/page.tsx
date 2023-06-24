@@ -12,6 +12,39 @@ import {
 import Loading from "@/app/loading";
 import { InternalServerError } from "@/app/lib/exceptions";
 
+const MOCK_DATA = [
+  {
+    success: true,
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    id: "202200407",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+  },
+  {
+    success: true,
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    id: "202200407",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+  },
+  {
+    success: true,
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    id: "202200407",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+  },
+  {
+    success: true,
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    id: "202200407",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+  },
+  {
+    success: true,
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    id: "202200407",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+  },
+];
+
 const PhotoPage = () => {
   const [front, setFront] = useState<string>("");
   const [back, setBack] = useState<string>("");
@@ -105,7 +138,10 @@ const PhotoPage = () => {
       router.push("/result");
     } else {
       console.log(res.status);
-      throw new InternalServerError();
+      // throw new InternalServerError();
+      // display mock data if server ends
+      window.localStorage.setItem("res", JSON.stringify(MOCK_DATA));
+      router.push("/result");
     }
   };
 
