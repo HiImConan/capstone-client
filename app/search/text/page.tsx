@@ -9,6 +9,201 @@ import DropdownModal from "./components/DropdownModal";
 import Image from "next/image";
 import { useModalVisible } from "./hooks/useModalVisible";
 
+const MOCK_DATA: ISearchResult[] = [
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+  {
+    buy_class: "의약품",
+    char_back: "-",
+    char_front: "-",
+    color_back: "흰색",
+    color_front: "흰색",
+    company: "회사명",
+    id: 202200407,
+    line_back: "-",
+    line_front: "-",
+    name: "타이레놀8시간이알서방정(아세트아미노펜)",
+    pill_effect: "설명",
+    pill_img: "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+    pill_type: "정제",
+    shape: "장방형",
+  },
+];
+
 const TextPage = () => {
   const [searchResult, setSearchResult] = useState<ISearchResult[] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,15 +238,20 @@ const TextPage = () => {
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
     setLoading(true);
-    const res = await fetch("https://find-my-pills.shop/search/text", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    });
-    const result = await res.json();
-    console.log(result);
-    setSearchResult(result);
-    setLoading(false);
+    try {
+      const res = await fetch("https://find-my-pills.shop/search/text", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+      const result = await res.json();
+      console.log(result);
+      setSearchResult(result);
+      setLoading(false);
+    } catch {
+      setSearchResult(MOCK_DATA);
+      setLoading(false);
+    }
   };
 
   const onResetField = (

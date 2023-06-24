@@ -123,23 +123,26 @@ const PhotoPage = () => {
 
     setLoading(true);
 
-    const res = await fetch("https://find-my-pills.shop/upload", {
-      method: "POST",
-      body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
-    });
+    try {
+      const res = await fetch("https://find-my-pills.shop/upload", {
+        method: "POST",
+        body: formData, // header > content-type을 설정하면 전송이 제대로 이뤄지지 않음.
+      });
 
-    const response = await res.json();
-    if (res.status === 200) {
-      console.log(response);
-      window.URL.revokeObjectURL(front); // 메모리 누수 방지
-      window.URL.revokeObjectURL(back);
-      const resObj = JSON.stringify(response);
-      window.localStorage.setItem("res", resObj);
-      router.push("/result");
-    } else {
-      console.log(res.status);
-      // throw new InternalServerError();
-      // display mock data if server ends
+      const response = await res.json();
+      if (res.status === 200) {
+        console.log(response);
+        window.URL.revokeObjectURL(front); // 메모리 누수 방지
+        window.URL.revokeObjectURL(back);
+        const resObj = JSON.stringify(response);
+        window.localStorage.setItem("res", resObj);
+        router.push("/result");
+      } else {
+        console.log(res.status);
+        throw new InternalServerError();
+      }
+    } catch {
+      // display mock data if server disconnected
       window.localStorage.setItem("res", JSON.stringify(MOCK_DATA));
       router.push("/result");
     }
